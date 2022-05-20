@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <a href="products.html">products</a>
+    <form onsubmit="storeProducts(event)" id="products">
+        <label for="name">Product Name</label>
+        <input type="text" placeholder="Product name" id="name"/>
+
+        <label for="category">Category</label>
+        <input type="text" placeholder="category" id="category" />
+
+        <label for="image">Image URL</label>
+        <input type="url" placeholder="image url" id="image"/>
+
+        <label for="price">Price</label>
+        <input type="text" id="price"/>
+
+        <label for="gender">Gender</label>
+        <select id="gender">
+            <option>--</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="sold">Sold</label>
+        <select id="sold">
+            <option value="false">False</option>
+            <option value="true">True</option>
+        </select>
+
+        
+
+        <input id="add" type="submit"/>
+        
+    </form>
+</body>
+</html>
+<script src="admin.js"></script>

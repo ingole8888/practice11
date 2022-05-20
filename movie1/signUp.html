@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #navbar {
+        display: flex;
+        justify-content: space-around;
+        background-color: teal;
+        padding: 10px;
+        margin-bottom: 30px;
+      }
+
+      #aa{
+          width:60%;
+      }
+      #navbar a:hover {
+        color: white;
+      }
+      #navbar a {
+        cursor: pointer;
+      }
+      #cont{
+          width: 18%;
+          margin: auto;
+          line-height: 40px;
+          box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+          text-align: center;
+      }
+      #sub{
+         background-color: teal;
+         border: 2px solid teal;
+         color: white;
+     }
+    </style>
+  </head>
+  <body>
+   
+    <h1>Signup page</h1>
+    <div id="navbar">
+        <div id="aa"></div>
+        <div><a href="index.html">Home</a></div>
+        <div><a href="signUp.html">SignUp</a></div>
+        <div><a href="signIn.html">SignIn</a></div>
+      </div>
+    <form id="cont">
+        <h1>SignUp</h1>
+      <input id="user" type="text" placeholder="Enter your Name" />
+      <input id="mob" type="mobile" placeholder="Enter your Mobile No." />
+      <input id="email" type="text" placeholder="Enter your email" />
+      <input id="pass" type="password" placeholder="Enter your password" />
+      <input type="submit" id="sub"/>
+    </form>
+  </body>
+</html>
+
+<script>
+  document.querySelector("form").addEventListener("submit", signUpFun);
+
+  var userData = JSON.parse(localStorage.getItem("userCreds"))||[]
+  function signUpFun() {
+    event.preventDefault();
+
+    var userObj = {
+      userName: document.querySelector("#user").value,
+      mobile: document.querySelector("#mob").value,
+      email: document.querySelector("#email").value,
+      password: document.querySelector("#pass").value,
+      
+    };
+    //console.log(userObj);
+    userData.push(userObj);
+    //console.log(userData)
+    localStorage.setItem("userCreds",JSON.stringify(userData))
+
+  }
+</script>
