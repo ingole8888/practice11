@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            display: flex;
+            padding-right: 1000px;
+            color: white;
+            background-color: gray;
+        }
+    
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <h2><a href="index.html">back</a></h2>
+    <div id="container"></div>
+</body>
+</html>
+<script>
+    
+   var database=JSON.parse(localStorage.getItem('studentData'))
+   console.log(database)
+   var container=document.getElementById('container')
+   function append(database){
+
+    database.map(function(el,index){
+        let box=document.createElement('div')
+       let name=document.createElement('h1')
+       name.innerText=`student name-${el.name}`;
+       
+       let course=document.createElement('h3')
+       course.innerText=`course-${el.course}`
+
+       let unit=document.createElement('h3')
+       unit.innerText=`Unit-${el.unit}`;
+
+       let image=document.createElement('img')
+       image.src=el.image;
+
+       let batch=document.createElement('h3')
+       batch.innerText=`batch-${el.batch}`;
+       
+       let remove=document.createElement('button')
+       remove.innerText='remove'
+       remove.addEventListener('click',function(){
+           remove1(el,index)
+       })
+      // console.log(name)
+       box.append(image,name,course,unit,batch,remove)
+       container.append(box)
+    })
+      
+   }
+   append(database)
+   let trash=JSON.parse(localStorage.getItem('trash')) || []
+   function remove1(el,index){
+     //console.log('hello')
+     trash.push(el)
+     localStorage.setItem('trash',JSON.stringify(trash))
+     database.splice(index,1)
+     localStorage.setItem('studentData',JSON.stringify(database))
+     window.location.reload()
+   }
+
+
+
+   var navbar1=document.getElementById('navbar')
+
+function calculate(){
+    let obj={}
+    for(let i=0; i<database.length; i++){
+        if(!obj[database[i].batch]){
+            obj[database[i].batch]=1;
+        }
+        else{
+            obj[database[i].batch]++
+        }
+    }
+let batch17=document.createElement('h2')
+batch17.innerText=`batch_17 -${obj[17]}`
+let line=document.createElement('hr')
+let batch18=document.createElement('h2')
+batch18.innerText=`batch_18 -${obj[18]}`
+console.log(batch17)
+navbar1.append(batch17,line,batch18)
+console.log(obj)
+}
+calculate()
+</script>

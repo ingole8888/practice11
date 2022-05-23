@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar{
+            display: flex;
+            padding-right: 1000px;
+            color: white;
+            background-color: gray;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar"></div>
+    <h1><a href="dashboard.html">dashboard</a></h1>
+    <form id="form1">
+        <input id="name1" type="text" placeholder="Student name">
+        <input id="course1" type="text" placeholder="Course">
+        <input id="unit1" type="text" placeholder="Unit">
+        <input id="image1" type="url" placeholder="Image">
+        <input id="batch1" type="text" placeholder="Batch">
+        <input onclick="myFunction()" type="Submit">
+    </form>
+</body>
+</html>
+<script>
+    let database=JSON.parse(localStorage.getItem('studentData')) || [];
+    
+    function studentObj(n,c,u,i,b){
+        this.name=n;
+        this.course=c;
+        this.unit=u;
+        this.image=i;
+        this.batch=b;
+          
+    }
+
+    function myFunction(){
+        event.preventDefault();
+        let form1=document.getElementById('form1')
+        let name1=form1.name1.value;
+        let course1=form1.course1.value;
+        let unit1=form1.unit1.value;
+        let image1=form1.image1.value;
+        let batch1=form1.batch1.value;
+
+        let newStudent=new studentObj(name1,course1,unit1,image1,batch1)
+        //console.log(newStudent)
+        database.push(newStudent)
+        //console.log(database)
+
+        localStorage.setItem('studentData',JSON.stringify(database))
+    }
+
+    var navbar1=document.getElementById('navbar')
+
+    function calculate(){
+        let obj={}
+        for(let i=0; i<database.length; i++){
+            if(!obj[database[i].batch]){
+                obj[database[i].batch]=1;
+            }
+            else{
+                obj[database[i].batch]++
+            }
+        }
+    let batch17=document.createElement('h2')
+    batch17.innerText=`batch_17 -${obj[17]}`
+    let line=document.createElement('hr')
+    let batch18=document.createElement('h2')
+    batch18.innerText=`batch_18 -${obj[18]}`
+    console.log(batch17)
+    navbar1.append(batch17,line,batch18)
+    console.log(obj)
+    }
+    calculate()
+</script>
