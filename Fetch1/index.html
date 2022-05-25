@@ -1,0 +1,51 @@
+<!DOCTYPE html>    
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+            margin: 5%;
+            gap: 20px;
+        }
+        img{
+            height: 200px;
+            width: 220px;
+            
+        }
+        #nav{
+            padding: 20px;
+            padding-left: 80px;
+            padding-top: 50px;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; 
+            background-color: aqua;
+        }
+        input{
+            font-size: 25px;
+        }
+        button{
+            font-size: 25px;
+            
+
+        }
+        #top{
+            margin-left: 50%;
+        }
+    </style>
+</head>
+<body>
+<div id="nav">
+    <input type="text" id="mov" placeholder="Enter your movie name">
+    <button onclick="getdata()">submit</button>
+    <!-- <button onclick="toprating()" id="top">Top Rating</button> -->
+</div>
+    <div id="container"></div>
+    
+</body>
+</html>
+<script src="index.js"></script>
