@@ -40,7 +40,6 @@ function getdata(){
     name.innterText=data.Director;
 
     var img=document.createElement("img");
-    
     img.src=data.Poster;
 
     var date =document.createElement("p");
@@ -97,36 +96,5 @@ function geterr(err){
     container.append(div);
 }
 
-var filter=arr.filter(function(el){
-    return el.ratings>8.5;
-});
 
-function toprating(){
 
-    var container =document.querySelector("#container");
-    container.innerHTML=null;
-
-   
-
-    filter.map(function(el){
-        var img =document.createElement("img");
-        img.src=el.poster;
-    
-        var name =document.createElement("h2");
-        name.innerText=el.name;
-    
-        
-        var release=document.createElement("h3");
-        release.innerText=`Released Date:  ${el.realise_data}`;
-    
-        var rating=document.createElement("h3");
-        rating.innerText=`Rating: ${el.rating}`
-    
-        var div =document.createElement("div")
-        div.append(img,name,release,rating);
-        div.style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; padding:20px;text-align:center"
-    
-        document.querySelector("#container").append(div);
-    })
-
-}
