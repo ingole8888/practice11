@@ -29,55 +29,35 @@ function getdata(){
 
     
    function append(data){
+
+    var container =document.querySelector("#container");
     
     var div =document.createElement("div");
     div.style="padding:20px;box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
 
-    var title=document.createElement("p");
-    title.innerText=data.Title;
-        
-   var name =document.createElement("h3");
-    name.innterText=data.Director;
+    var title=document.createElement("h1");
+    title.innerText=`Name-${data.Title}`;
 
     var img=document.createElement("img");
     img.src=data.Poster;
 
     var date =document.createElement("p");
-    date.innerText=data.Released;
+    date.innerText=`Date-${data.Released}`;
 
-    var rating =document.createElement("h3");
-    rating.innerText=data.imbdRating;
-
-    var container =document.querySelector("#container");
-
-
-    div.append(img,name,title,date,rating);
-    container.append(div);
-
+    let imdb=document.createElement('h3')
+    imdb.innerText=`Rating-${data.imdbRating}`;
+    if(data.imdbRating>8.5){
+        let recommended=document.createElement('h1');
+        recommended.innerText='Recommended'
+        div.append(recommended,img,title,date,imdb);
+        container.append(div);
+    }
+    else{
+        div.append(img,title,date,imdb);
+        container.append(div);
+        }
 }
 }
-
-arr.map(function(el){
-    var img =document.createElement("img");
-    img.src=el.poster;
-
-    var name =document.createElement("h2");
-    name.innerText=el.name;
-
-    
-    var release=document.createElement("h3");
-    release.innerText=`Released Date:  ${el.realise_data}`;
-
-    var rating=document.createElement("h3");
-    rating.innerText=`Rating: ${el.imbdRating}`
-
-    var div =document.createElement("div")
-    div.append(img,name,release,rating);
-    div.style="box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px; padding:20px;text-align:center"
-
-    document.querySelector("#container").append(div);
-})
-
 function geterr(err){
 
     var container =document.querySelector("#container");
@@ -88,7 +68,7 @@ function geterr(err){
 
     var img=document.createElement("img");
     var g =document.createElement("h2");
-    g.innerText="Please try different"
+    g.innerText="Please try different Name"
     
     img.src="https://c.tenor.com/IHdlTRsmcS4AAAAM/404.gif";
 
