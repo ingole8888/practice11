@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #show{
+            height: 200px;
+            width: 175px;
+            border: 1px solid grey;
+            border-top: none;
+            overflow: scroll;
+        }
+        #one{
+          
+            width: 320px;
+            margin-left: 40px;
+            height: 450px;
+            text-align: center;
+        }
+        #flex{
+            display: flex;
+
+        }
+        #movie:hover{
+            background-color: rgb(141, 138, 138);
+        }
+        #movie{
+            cursor: pointer;
+        }
+        img{
+            height: 300px;
+            width: 280px;
+        }
+        #bar{
+            margin-left: 75%;
+            margin-bottom: 20px;
+            font-size: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: teal;
+        }
+        a{
+            text-decoration: none;
+        }
+        #nav{
+            background-color: teal;
+        }
+        h1{
+            color: rgb(240, 240, 15);
+        }
+    </style>
+</head>
+<body>
+    <div id="nav">
+        <div id="bar">
+            <a href="trending.html">Trending Movies</a>
+        </div>
+    </div>
+    <h1>HOTSTAR</h1>
+    <input id="name" oninput="debounce(main,300)" type="text" placeholder="enter your movie name">
+    <div id="flex">
+        <div id="show"></div>
+    <div id="one">
+    </div>
+    </div>
+</body>
+</html>
+<script>
+    var id;
+  async function showdata(){
+        var movie=document.getElementById("name").value;  
+     var res= await fetch(`https://www.omdbapi.com/?apikey=793f7c2e&s=${movie}`)
+        var data = await res.json()     
+     return data.Search;  
+    }
+    function append(data){     
+        document.getElementById("show").innerHTML=null;
+        data.forEach(function (el){   
+          var name =document.createElement("p");
+          name.style="padding:5px";
+          name.innerText=el.Title;
+          name.setAttribute("id","movie")
+          name.addEventListener("click",function(){
+              get_movie(el);
+          })
+          document.getElementById("show").append(name)
+        })
+    }
+    async function main(){
+        var data = await showdata();
+        if(data==undefined){
+            return false;
+        }
+        console.log(data)
+        append(data)
+    }
+    function debounce(func,delay){
+        if(id){
+            clearTimeout(id)
+        }
+      id= setTimeout(function(){
+         func();
+        },delay)
+    }
+    function get_movie(data){
+        var container= document.getElementById("one");
+        let img =document.createElement("img");
+        img.src=data.Poster;
+
+        let name =document.createElement("h2");
+        name.innerText=data.Title;
+
+        let year =document.createElement("h3");
+        year.innerText=`Release Year: ${data.Year}`
+
+        var div=document.createElement("div");
+        div.append(img,name,year);
+        div.style="padding:10px;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"
+       container.innerHTML=null;
+       container.append(div)   
+    }
+</script>

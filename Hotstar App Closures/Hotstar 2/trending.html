@@ -1,0 +1,80 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #nav{
+            background-color: teal;
+        }
+        #bar{
+            margin-left: 75%;
+            margin-bottom: 20px;
+            font-size: 25px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background-color: teal;
+        }
+        #show_items{
+            display: grid;
+            grid-template-columns: repeat(3,1fr);
+            gap: 20px;
+        }
+        img{
+            height: 320px;
+            width: 300px;
+        }
+    </style>
+
+</head>
+<body>
+   <div id="nav">
+    <div id="bar">
+        <a href="index.html">Home</a>
+    </div>
+   </div>
+    <div id="show_items">
+
+    </div>
+</body>
+</html>
+<script>
+    var url=`https://api.themoviedb.org/3/movie/popular?api_key=1893904dce9ca0b73aaa7d3cc950b88c&language=en-US&page=1`;
+    fetch(url)
+    .then(function(res){
+        return res.json();
+    })
+    .then(function(res){
+        console.log(res.results)
+        append_data(res.results)
+
+    })
+    .catch(function(err){
+        console.log(err)
+    })
+
+   function append_data(data){
+  data.forEach(function(el){
+    let img =document.createElement("img");
+    img.src=`https://image.tmdb.org/t/p/w500${el.poster_path}`;
+
+let name =document.createElement("h2");
+name.innerText=el.title;
+
+let year=document.createElement("h3");
+year.innerText=`Release date: ${el.release_date}`
+
+let rating =document.createElement("p");
+rating.innerText=`Rating: ${el.vote_average}`
+
+let div =document.createElement("div");
+div.append(img,name,year,rating)
+div.style="padding:15px; box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;"
+
+document.getElementById("show_items").append(div);
+  })
+    }
+</script>

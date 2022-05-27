@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<style>
+    #nav{
+        height: 50px;
+        background-color: teal;
+        padding-top: 30px;
+        padding-left: 20px;
+    }
+    #box{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        background-color:burlywood;
+        align-items: center;
+    }
+    #container{
+        margin: auto;
+    }
+</style>
+<body>
+    <div id="nav">
+        <input type="text" id="city" placeholder="City Name">
+        <button onclick="getData()">Enter City Name</button>
+    </div>
+    <div id="box">
+       <div id="container"></div>
+       <div class="mapouter">
+          <div class="gmap_canvas">
+             <iframe width="600" height="500" id="gmap_canvas" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"> </iframe>
+             <a href="https://fmovies-online.net"></a><br>
+             <style>
+             .mapouter{position:relative;text-align:right;height:500px;width:600px;}
+             </style>
+             <a href="https://www.embedgooglemap.net">google maps</a>
+             <style>
+             .gmap_canvas {overflow:hidden;background:none!important;height:500px;width:600px;}
+             </style>
+            </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
+<script src="./index.js"></script>
