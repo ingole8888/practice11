@@ -1,7 +1,6 @@
-// AIzaSyBgtmQlN4a_DcO2aWa079_t6Zff_hJLA-4
 let url1 =`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=movies&key=AIzaSyBgtmQlN4a_DcO2aWa079_t6Zff_hJLA-4`
  
-const show = async() => {
+const Page = async() => {
     try{
         const res = await fetch(url1);
         const data =await res.json();
@@ -11,51 +10,58 @@ const show = async() => {
         console.log("err");
     }
   }
-const show_data = async() => {
+
+
+var api_key ="AIzaSyBgtmQlN4a_DcO2aWa079_t6Zff_hJLA-4"
+let show = async() => {
     try{
         let input =document.getElementById("input").value
-        let url =`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${input}&key=AIzaSyBgtmQlN4a_DcO2aWa079_t6Zff_hJLA-4`
+        let url =`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=20&q=${input}&key=${api_key}`
 
-        const res = await fetch(url);
-        const data =await res.json();
-        console.log(data.items);
+        let res = await fetch(url);
+        let data =await res.json();
         append(data.items);
+        console.log(data);
     }catch(err){
-        console.log("err");
+        console.log(err);
     }
-  }
-//   <iframe width="560" height="315"
-//    src="https://www.youtube.com/embed/tZ_fEv2CE74"
-//     title="YouTube video player" frameborder="0" 
-//     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope;
-//    picture-in-picture" allowfullscreen></iframe>
-const append=(video)=>{
-    let container =document.getElementById("show_items");
-    container.innerHTML=null;
-    video.forEach( (el)=>{
-        let div=document.createElement("div");
-    let img =document.createElement("img");
-    img.src=el.snippet.thumbnails.default.url;
-   img.addEventListener("click",()=>{
-       newpage(el);
-   })
-    console.log(img.src);
-        // let iframe =document.createElement("iframe");
-        // iframe.src=`https://www.youtube.com/embed/${videoId}`;
-        // iframe.width="100%";
-        // iframe.height="185px";
-        // iframe.allow="fullscreen";
-        let =name1 =document.createElement("h3");
-      name1.innerText=el.snippet.title;
-      name1.style="margin-top:-3px;padding-bottom:10px"
-      div.append(img,name1);
-      div.style="padding:10px; margin-top:20px "
-      div.setAttribute("id","div");
-      container.append(div);
-      })
-}
-let newpage =(el)=>{
-   window.location="video.html";
-   localStorage.setItem("video",JSON.stringify(el));
-}
-show();
+  };
+
+  let append = (data) => {
+  let container = document.getElementById("show_items");
+
+  // console.log(data);
+  // data.forEach((el) => { el.id.videoId/ el.snippet.title
+  data.forEach(({ id: { videoId }, snippet: { title, thumbnails } }) => {
+    let div = document.createElement("div");
+    div.setAttribute("id","hower")
+    let iframe = document.createElement("iframe");
+    iframe.src = `https://www.youtube.com/embed/${videoId}`;
+    iframe.allow = "fullscreen";
+    let h3 = document.createElement("h3");
+    h3.innerText = title;
+
+    div.append(iframe, h3);
+
+    let video = {
+      title,
+      videoId,
+    };
+
+    div.onclick = () => {
+      playVideo(video);
+    };
+
+    container.append(div);
+  });
+};
+
+let playVideo = (video) => {
+ localStorage.setItem("video", JSON.stringify(video));
+  window.location.href = "video.html";
+};
+
+Page();
+
+
+
