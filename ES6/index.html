@@ -1,0 +1,81 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube</title>
+    <style>
+        #show_items{
+            display: grid;
+            grid-template-columns: repeat(4,1fr);
+           gap:5px;
+            
+
+        }
+        #div{
+            height: 300px;
+            margin-top: 20px;
+        }
+        img{
+            height: 200px;
+            width: 90%;
+            cursor: pointer;
+        }
+        img:hover{
+            height: 250px;
+            width: 100%;
+        }
+        #bar{
+            display: flex;
+         
+            text-align: center;
+            width: 95%;
+            margin: auto;
+        }#you{
+            height: 30px;
+            width: 50px;
+            margin-top: 0.7%;
+            padding: 1%;
+        }
+        h2{
+         font-family: Arial, Helvetica, sans-serif;
+    
+        }
+       #input{
+           margin-left: 8%;
+           height: 35px;
+           width: 500px;
+           margin-top: 1.5%;
+           font-size: 18px;
+           font-family: Arial, Helvetica, sans-serif;
+        }
+        button{
+            height: 36px;  
+            margin-top: 2%;
+        }
+        #search{
+            height: 20px;
+            width: 23px;
+        }
+        #submit{
+           margin-top: 19px;
+            width: 80px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+   <div id="bar"> 
+      <img id="you" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAARVBMVEX///8jHyAgHB0OBQgMAAWlpKQpJSaenZ309PUAAAAIAAD8/Pz5+fna2tqop6dvbW1oZmevrq4tKivFxMQYExRiYGC+vr7Dc4WrAAABB0lEQVR4nO3cS3LCMBAFQGIIIBPbhN/9jxqSyiIsTUnlydB9g1eSNV5MvdUKAAAAAAAAAAAAAAAAXtEwvscwDk3yHabSb2Loy/TRIOHUv8XRH+sHHMrSqR6U+hd1jHSE90P8lHC2/Lc0/0vzMy3WMdynxaFBwu+Jv4uh0cQHAAAAAAAAAIB59jG0ijdcT9sYTtcmK0PncumiuJRz/YD7bbf0ut4f3br+GvQt2PblrXrC3WbpUA/6sXrC/GeY/zvM/5aGmofHZiu0S//M/GoVDwAAAAAAAAAAZsjeuRerN1HL7hPy95fm76DNnzD/Lc3/0rxAJ3v+Xn0AAAAAAAAAAAAAAAD4T74AYhs1O+vt3ioAAAAASUVORK5CYII=">
+      <img id="you" src="https://cdn.pixabay.com/photo/2016/11/19/03/08/youtube-1837872__340.png" alt="youtube img">
+      <h2>YouTube</h2>
+      <input id="input" type="text" placeholder="Search" >
+      <button onclick="show_data()" id="submit"><img id="search" src="https://img.icons8.com/ios-glyphs/2x/search.png" alt=""></button>
+      <img style="height: 20px; width: 20px; padding: 30px;" src="https://img.icons8.com/android/2x/microphone.png" alt="mike icon">
+    </div>
+    <div id="show_items"></div>
+</body>
+</html>
+<script src="./index.js"></script>
