@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipes</title>
+</head>
+<body>
+    <h1>It`s Receipe </h1>
+    <h1 id="name_of_receipe"> 
+
+    </h1>
+   <table>
+    <tbody id="list" >
+
+    </tbody>
+   </table>
+
+    
+</body>
+</html>
+<script>
+    var data =JSON.parse(localStorage.getItem("receipe"));
+    console.log(data);
+   let con= document.getElementById("name_of_receipe")
+   con.innerText=data.strMeal;
+   con.style="color:green";
+
+
+
+   var tr =document.createElement("tr");
+   var tr1 =document.createElement("tr");
+   var tr2 =document.createElement("tr");
+   var tr3 =document.createElement("tr");
+   var tr4 =document.createElement("tr");
+   var tr5 =document.createElement("tr");
+  
+         let li=document.createElement("td");
+         li.innerText=data.strIngredient1;
+
+         let li2=document.createElement("td");
+         li2.innerText=data.strIngredient2;
+
+         let li3=document.createElement("td");
+         li3.innerText=data.strIngredient3;
+
+         let li4=document.createElement("td");
+         li4.innerText=data.strIngredient4;
+         
+
+         let li5=document.createElement("td");
+         li5.innerText=data.strIngredient5;
+
+         let li6=document.createElement("td");
+         li6.innerText=data.strIngredient6;
+  
+
+         tr.append(li);
+         tr1.append(li2);
+         tr2.append(li3);
+         tr3.append(li4);
+         tr4.append(li5);
+         tr5.append(li6);
+
+        
+         document.querySelector("tbody").append(tr,tr1,tr2,tr3,tr4,tr5)
+
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+
+    <div id="navbar">
+
+    </div>
+    <h1>Today Special receipes</h1>
+
+    <div id="random_food">
+
+    </div>
+  >
+    
+</body>
+</html>
+<script type="module">
+
+   import navbar from "./componants/componant.js";
+   document.getElementById("navbar").innerHTML=navbar();
+    
+
+   const url=`https://www.themealdb.com/api/json/v1/1/filter.php?a=Indian`
+
+   fetch(url)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(res){
+    console.log(res.meals);
+    append(res.meals);
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+    
+  function append(data){
+    var cont=document.getElementById("random_food");
+      cont.innerHTML=null;
+      data.forEach(function(el){
+          
+        var name2=document.createElement("h3");
+        name2.innerText=el.strMeal;
+
+        var img=document.createElement("img");
+        img.src=el.strMealThumb;
+        img.style="height:80% ; width:100%"
+
+     let div=  document.createElement("div");
+     div.append(img,name2);
+     div.style="padding:10px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px "
+
+      cont.append(div);
+
+        })
+  }
+
+</script>

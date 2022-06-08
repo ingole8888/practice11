@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="style.css">
+<body>
+    <div id="navbar">
+
+    </div>
+    <h1>
+        This is sign Up page
+    </h1>
+
+    <form action="">
+        <input type="email" placeholder="Enter your email" id="email">
+        <br>
+        <br>
+        <input type="password" placeholder="Enter password" id="password">
+        <br>
+        <br>
+        <input type="password" placeholder="Conform Password" id="Conformpassword">
+        <br>
+        <br>
+        <input type="submit">
+    </form>
+    
+</body>
+</html>
+<script type="module">
+
+ import navbar from "../componants/componant.js";
+ document.getElementById("navbar").innerHTML=navbar();
+
+
+ var submit =document.querySelector("form");
+    submit.addEventListener("submit",createpass);
+
+    function createpass(){
+        event.preventDefault();
+        var email =document.querySelector("#email").value;
+        var password=document.querySelector("#password").value;
+        var Conformpassword=document.querySelector("#Conformpassword").value;
+        
+               
+        var arr = JSON.parse(localStorage.getItem("userdata") )|| [];
+
+        if(password==Conformpassword && email != '' && password !=''){
+            var obj={
+                email:email,
+                password:password
+            }
+            arr.push(obj);
+            localStorage.setItem("userdata",JSON.stringify(arr));
+            window.location.href="signin.html";
+            
+            alert(" Signup Successful => ")
+            
+
+        }else{
+            alert("please fill same password ")
+        }
+      
+    }
+ 
+ 
+  
+</script>

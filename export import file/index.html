@@ -1,0 +1,125 @@
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Food App</title>
+  </head>
+  <link rel="stylesheet" href="style.css">
+  <body>
+      <div id="navbar">
+      </div>
+    <div id="bar">
+      <h1>Food app</h1>
+      <div id="user">
+   user name
+      </div>
+    </div>
+      <input id="food" type="text" placeholder="Enter your Food Name">
+    <div id="output">
+
+    </div>
+      <div id="container">
+
+      </div>
+  </body>
+  </html>
+  <script type="module">
+
+
+  
+    import navbar from "./componants/componant.js";
+    document.getElementById("navbar").innerHTML=navbar();
+
+    var id;
+    var food=document.getElementById("food");
+    food.addEventListener("input",function(){
+        debouncing();
+    })
+
+    function main(){
+      var input=document.getElementById("food").value;
+
+  const url =`https://www.themealdb.com/api/json/v1/1/search.php?s=${input}`;
+
+  fetch(url)
+  .then(function(res){
+    return res.json();
+  })
+  .then(function(res){
+    console.log(res.meals);
+    append(res.meals);
+  })
+  .catch(function(err){
+    console.log(err)
+  })
+    }
+
+    function append(data){
+      let output=document.getElementById("output");
+      output.innerHTML=null;
+
+
+
+         
+      data.forEach(function(el){
+
+        
+      
+        let name=document.createElement("h3");
+        name.innerText=el.strMeal;
+        name.setAttribute("id","name");
+
+        let name1=el.strMeal;
+        let src=el.strMealThumb;
+   
+
+        name.addEventListener("click",function(){
+          
+            final(name1,src,el)
+        
+        })
+
+        output.append(name)
+      })
+    }
+
+  function final(name1,src,el){
+    let img=document.createElement("img");
+        img.src=src;
+    
+ console.log(el)
+        
+        let name=document.createElement("h3");
+        name.innerText=name1;
+
+        var btn =document.createElement("button");
+        btn.innerText="Get Receipe";
+        btn.addEventListener("click",function(){
+               localStorage.setItem("receipe",JSON.stringify(el));
+               window.location="receipe.html"
+        })
+       
+
+      var con= document.getElementById("container");
+      con.innerHTML=null;
+      con.append(img,name,btn)
+  }
+
+
+
+  var id;
+    function debouncing(){
+      if(id){
+        clearTimeout(id);
+      }
+    id = setTimeout(function(){
+        main();
+      },1000)
+    }
+
+    var email =JSON.parse(localStorage.getItem("userdata"));
+    let user=document.getElementById("user");
+    user.innerText=email[email.length-1].email || "User Name"
+  </script>
